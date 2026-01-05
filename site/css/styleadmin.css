@@ -1,0 +1,326 @@
+/* ===== RESET ===== */
+:root{
+  --bg: #fff5f5;         /* nền đỏ nhạt */
+  --header: #e53935;     /* đỏ */
+  --header2: #ef5350;    /* đỏ nhạt hơn để tạo gradient */
+  --card: #ffffff;
+  
+  
+  --border: #f0d7d7;
+  --shadow: 0 12px 28px rgba(0,0,0,.10);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+body {
+ 
+  margin: 0;
+  padding: 20px;
+  background: #f4f6f9;
+  color: #333;
+}
+/* trang admin*/
+.container{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.topbar{
+  background-color: rgb(148, 10, 10);
+  color: #fff;
+  border-bottom: 1px solid rgb(148, 10, 10);
+}
+
+.topbar .container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 16px;
+  gap: 16px;
+}
+
+.title h1{
+  font-size: 28px;
+  margin: 0;
+}
+
+.sub{
+  margin: 6px 0 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+.nav{ 
+  display: flex;
+  gap: 10px;
+}
+.nav-link{
+  display: inline-block;
+  padding: 10px 12px;
+  border: 1px solid rgb(148, 10, 10);
+  border-radius: 12px;
+  background: #fff;
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+}
+.nav-link:hover{ 
+  color:#b80a0a
+ }
+
+main.container{ 
+  flex: 1;
+  padding: 34px 0 20px;
+  display: flex;
+  
+}
+
+.grid{
+  width: 100%; 
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card{
+  display: block;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  color: black;;
+  text-decoration: none;
+}
+
+.card:hover{ 
+  transform: translateY(-2px); 
+  transition: .15s ease;
+}
+
+.card-title{
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-desc{
+  color: rgb(61, 61, 61);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.card-cta{
+  display: inline-block;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #970505;
+  color: #fff;
+  font-size: 14px;
+}
+
+
+.footer{
+  text-align: center;
+  margin-top: 22px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  color: rgb(61, 61, 61);
+  font-size: 13px;
+}
+
+@media (max-width: 760px){
+  .grid{ grid-template-columns: 1fr; }
+  .topbar .container{ flex-direction: column; align-items: flex-start; }
+}
+
+/* ===== TIÊU ĐỀ ===== */
+h1 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  background-color: rgb(148, 10, 10);
+  color: #fff;
+  padding: 10px;
+}
+
+h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #222;
+}
+
+/* ===== WRAP 2 CỘT ===== */
+.wrap {
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ===== CARD ===== */
+.wrap > div {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ===== FORM ===== */
+form label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #0d6efd;
+  outline: none;
+}
+
+/* ===== HÀNG 2 CỘT ===== */
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* ===== CHECKBOX ===== */
+form label input[type="checkbox"] {
+  width: auto;
+  margin-right: 6px;
+}
+
+/* ===== BUTTONS ===== */
+.btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btns button {
+  padding: 10px 16px;
+  background: #901923;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btns button:hover {
+  background: #eb1d2f;
+}
+
+.btns a {
+  color: #6c757d;
+  text-decoration: none;
+  font-weight: 500;
+  align-self: center;
+}
+
+.btns a:hover {
+  text-decoration: underline;
+}
+
+/* ===== HINT ===== */
+.hint {
+  margin-top: 18px;
+  padding: 12px;
+  background: #f1f3f5;
+  border-left: 4px solid #0d6efd;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+/* ===== TABLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+thead {
+  background: #901923;
+  color: #fff;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background: #f8f9fa;
+}
+
+/* ===== ACTIONS ===== */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.actions a {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.actions a:hover {
+  text-decoration: underline;
+}
+
+/* ===== DELETE BUTTON ===== */
+.actions .danger {
+  padding: 5px 10px;
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.actions .danger:hover {
+  background: #b02a37;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+

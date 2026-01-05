@@ -1,0 +1,168 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+require_once __DIR__ . '/db.php';
+$q = trim($_GET['q'] ?? '');
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bi Phone</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <!-- CSS của bạn -->
+</head>
+<body>
+    <!--Header-->
+    <nav class="navbar navbar-expand-lg" id="header">
+        <div class="container-fluid px-3">
+        <a href="home.php"> <img style="width: 70px; border-radius: 50%; margin-left: 25px;" src="images/P.jpg" class="logo navbar-brand d-flex align-items-center gap-2"> S Phone</a>
+
+        <button class="navbar-toggler" type="button"data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul id="navbar" class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+
+                <li class="nav-item"><a href="home.php">Home</a></li>
+
+                <li class="nav-item"><a href="product.php">Sản phẩm</a></li>
+
+                <li class="nav-item thanhtimkiem">
+                    <form action="search.php" method="get">
+                        <button type="submit" aria-label="Tìm kiếm" style="background:none;border:0;padding:0;cursor:pointer;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                        <input type="text" name="q" placeholder="Bạn tìm gì..." value="<?= htmlspecialchars($q) ?>" required>
+                    </form>
+                </li>
+
+                <li id="lg-bag" class="nav-item"><a class=" active" href="cart.php"><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
+
+                <li id="oi-bag" class="nav-item"><a href="orderdetail.php"><i class="fa-solid fa-receipt"></i>Đơn hàng</a></li>
+
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li><span class="user-name">👤 <?= htmlspecialchars($_SESSION['hoTen'] ?? '') ?></span></li>
+                <?php else: ?>
+                    <li class="nav-item"><a class="login" href="login.php">Đăng nhập</a></li>
+                <?php endif; ?>
+
+            </ul>
+        </div>
+    </nav>
+    <!-- Home page banner-->
+    <section id="page-product-header">
+        <h2>#trangchu</h2>
+        <p>Tiết kiệm nhiều hơn với phiếu giảm giá</p>
+    </section>
+    
+    <!--Cart page-->
+        <div class="thanh-tren">
+            <button class="back" onclick="history.back()">←</button>
+            <h2>Giỏ hàng của bạn</h2>
+        </div>
+        <div class="thanh-chon">
+            <label class="dong-chon">
+            <input type="checkbox" id="chonTatCa" checked>
+            Chọn tất cả
+            </label>
+            
+        </div>
+
+        <div class="trang-giohang">
+            
+
+                
+
+        <!-- danh sách -->
+        
+
+<div id="danhsachGio"></div>
+
+<!-- thanh dưới -->
+             <div class="khung-thanh-duoi" >
+                 <div class="thanh-duoi">
+                <div class="tam-tinh">
+                Tạm tính: <span id="tongTien">0đ</span>
+                </div>
+                <button class="nut-mua" id="nutMua">Mua ngay (0)</button>
+                </div>
+             </div>
+           
+
+    
+    
+
+
+   
+
+    <!--footer-->
+    <!--
+    <footer id="section-p1">
+        <div class="col">
+            <h4>Thông tin liên hệ</h4>
+            <p><strong>Địa chỉ:</strong>VietNam, Vinh Long, Vinh Kim</p>
+            <p><strong>Số điện thoại:</strong>0353044315</p>
+            <p><strong>Giờ:</strong>09:00 - 18.00. Mon - Sat</p>
+            <div class="follow">
+                <h4>Liên hệ với BiPhone</h4>
+                <div class="icon">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>Liên hệ</h4>
+            <a href="#">Về chúng tôi</a>
+            <a href="#">Thông tin giao hàng</a>
+            <a href="#">Chính sách bảo hành</a>
+            <a href="#">Điều khoản điều kiện</a>
+        </div>
+
+        <div class="col">
+            <h4>Tài khoản</h4>
+            <a href="#">Đăng nhập</a>
+            <a href="#">Xem giỏ hàng</a>
+            <a href="#">Theo dõi đơn hàng</a>
+            <a href="#">Chính sách đổi trả</a>
+        </div>
+
+        <div class="col pay">
+            <h4>Phương thức thanh toán</h4>
+            <p>Thanh toán khi nhận hàng</p>
+        </div>
+
+        
+    </footer> 
+    -->
+    <script>
+  const isLoggedIn = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
+
+  document.getElementById('nutMua').addEventListener('click', function () {
+    if (!isLoggedIn) {
+      // Chưa đăng nhập -> đá qua login và nhớ trang quay lại
+      window.location.href = 'login.php?next=' + encodeURIComponent('cart.php');
+      return;
+    }
+    window.location.href = 'order.php';
+  });
+</script>
+
+
+    <script src="javascript/cart.js"></script>
+    
+</body>
+</html>
