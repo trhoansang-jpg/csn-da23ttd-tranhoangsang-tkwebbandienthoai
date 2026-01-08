@@ -131,7 +131,7 @@ $brands = $pdo->query("SELECT brand_id, tenHang, xuatXu FROM brand ORDER BY bran
 
           <div class="actions" style="margin-top:10px;">
             <button type="submit">Lưu</button>
-            <a href="admin_brand.php" style="text-decoration:none;display:inline-block;padding:8px 10px;">Hủy</a>
+            <a href="admin_brands.php" style="text-decoration:none;display:inline-block;padding:8px 10px;">Hủy</a>
           </div>
         </form>
       <?php else: ?>
@@ -183,7 +183,7 @@ $brands = $pdo->query("SELECT brand_id, tenHang, xuatXu FROM brand ORDER BY bran
                 <td><?= htmlspecialchars($b['xuatXu'] ?? '') ?></td>
                 <td>
                   <div class="actions">
-                    <a href="admin_brand.php?edit=<?= (int)$b['brand_id'] ?>" style="text-decoration:none;display:inline-block;padding:6px 10px;">Sửa</a>
+                    <a href="admin_brands.php?edit=<?= (int)$b['brand_id'] ?>" style="text-decoration:none;display:inline-block;padding:6px 10px;">Sửa</a>
 
                     <form method="post" style="display:inline;" onsubmit="return confirm('Xóa hãng này? Nếu hãng đang có sản phẩm thì sẽ không xóa được.');">
                       <input type="hidden" name="action" value="delete">

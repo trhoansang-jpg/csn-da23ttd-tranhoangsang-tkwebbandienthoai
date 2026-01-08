@@ -2,6 +2,7 @@
 
 const KHOA_GIO_HANG = "gio_hang_cua_toi";
 const KHOA_GIO_MUA_NGAY = "gio_hang_mua_ngay";
+const MAX_SO_LUONG = 3;
 function layGioHang() {
   return JSON.parse(localStorage.getItem(KHOA_GIO_HANG)) || [];
 }
@@ -34,8 +35,12 @@ function themVaoGio(btn) {
   const tonTai = gio.find(sp => sp.id === sanPham.id);
 
   if (tonTai) {
-    tonTai.soLuong += 1;
-  } else {
+  if (tonTai.soLuong >= MAX_SO_LUONG) {
+    alert("⚠️ Mỗi sản phẩm chỉ được tối đa 3 cái");
+    return;
+  }
+  tonTai.soLuong += 1;
+} else {
     gio.push(sanPham);
   }
 
@@ -131,7 +136,7 @@ function veGioHang() {
         <div class="soluong">
           <button onclick="doiSoLuong('${sp.id}',-1)">-</button>
           <span class="so-luong">${sp.soLuong}</span>
-          <button onclick="doiSoLuong('${sp.id}',1)">+</button>
+          <button onclick="doiSoLuong('${sp.id}',1)" ${sp.soLuong >= MAX_SO_LUONG ? "disabled" : ""}>+</button>
         </div>
 
         <button class="nut-xoa" onclick="xoaSanPham('${sp.id}')">
@@ -147,13 +152,23 @@ function veGioHang() {
 
 function doiSoLuong(id, delta) {
   let gio = layGioHang();
-  let sp = gio.find(x => x.id === id);
+  const sp = gio.find(x => x.id === id);
 
   if (!sp) return;
-  sp.soLuong += delta;
 
-  if (sp.soLuong <= 0) {
+  const soMoi = Number(sp.soLuong || 0) + Number(delta || 0);
+
+  // Giới hạn tối đa
+  if (soMoi > MAX_SO_LUONG) {
+    alert("⚠️ Số lượng tối đa là 3 sản phẩm");
+    return;
+  }
+
+  // Nếu giảm về 0 hoặc âm -> xoá sản phẩm khỏi giỏ
+  if (soMoi <= 0) {
     gio = gio.filter(x => x.id !== id);
+  } else {
+    sp.soLuong = soMoi;
   }
 
   luuGioHang(gio);

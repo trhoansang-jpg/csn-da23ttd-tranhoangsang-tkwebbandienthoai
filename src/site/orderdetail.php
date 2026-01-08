@@ -109,7 +109,7 @@ if (!function_exists('vnd')) {
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul id="navbar" class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
 
-                <li class="nav-item"><a  href="home.php">Home</a></li>
+                <li class="nav-item"><a  href="home.php">Trang chủ</a></li>
 
                 <li class="nav-item"><a href="product.php">Sản phẩm</a></li>
 

@@ -198,7 +198,7 @@ $specs = [
 
         <div>
             <ul id="navbar">
-                <li><a href="home.php">Home</a></li>
+                <li><a href="home.php">Trang chủ</a></li>
                 <li><a class="active" href="product.php">Sản phẩm</a></li>
                 <li class="thanhtimkiem">
                   <form action="search.php" method="get">

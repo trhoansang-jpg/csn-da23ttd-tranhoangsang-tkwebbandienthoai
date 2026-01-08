@@ -87,6 +87,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
               $thanhTien = $soLuong * $donGia;
               $insCT->execute([$orderId, $productId, $soLuong, $donGia, $thanhTien]);
+              $upd = $pdo->prepare("
+              UPDATE products
+              SET soLuongTon = soLuongTon - ?
+              WHERE product_id = ? AND soLuongTon >= ?
+            ");
+            $upd->execute([$soLuong, $productId, $soLuong]);
+
+            if ($upd->rowCount() === 0) {
+              throw new Exception("Sản phẩm ID $productId không đủ tồn kho.");
+            }
+
             }
 
             $pdo->commit();
@@ -120,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div>
             <ul id="navbar">
-                <li><a href="home.php">Home</a></li>
+                <li><a href="home.php">Trang chủ</a></li>
                 <li><a href="product.php">Sản phẩm</a></li>
                 <li class="thanhtimkiem">
                     <i class="fa-solid fa-magnifying-glass"></i>

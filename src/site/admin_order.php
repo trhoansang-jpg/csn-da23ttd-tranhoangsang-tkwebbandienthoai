@@ -75,7 +75,7 @@ if ($view_id > 0) {
 
   if ($order) {
     $st2 = $pdo->prepare("
-      SELECT oi.*, p.tenSp, p.hinhAnh, b.tenHang
+      SELECT oi.*, p.tenSp, b.tenHang
       FROM order_items oi
       JOIN products p ON p.product_id = oi.product_id
       JOIN brand b ON b.brand_id = p.brand_id
